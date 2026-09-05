@@ -1,0 +1,16 @@
+{
+  "name": "car-charging-system-demo",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix web run build && npm --prefix api run build && npm --prefix simulator run build && npm run build:csharp && npm run package-web",
+    "build:csharp": "dotnet build simulator-csharp",
+    "package-web": "node -e \"const fs=require('node:fs/promises'); (async()=>{await fs.rm('api/public',{recursive:true,force:true}); await fs.cp('web/dist','api/public',{recursive:true})})().catch(e=>{console.error(e);process.exit(1)})\"",
+    "test": "npm --prefix simulator test && npm --prefix api test && npm run test:csharp",
+    "test:csharp": "dotnet run --project simulator-csharp/tests",
+    "install": "npm --prefix web ci && npm --prefix api ci && npm --prefix simulator ci"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/just1bit/car-charging-system-demo.git"
+  }
+}

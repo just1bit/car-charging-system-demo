@@ -1,0 +1,20 @@
+{
+  "name": "car-charging-api",
+  "private": true,
+  "version": "1.0.0",
+  "main": "dist/functions.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && func start",
+    "test": "npm run build && node --test dist/*.test.js"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.0",
+    "@azure/data-tables": "^13.3.0",
+    "azure-iothub": "^1.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "<storage-account-connection-string>",
+    "IOT_EVENTHUB_CONNECTION": "<IoT-Hub-built-in-Event-Hub-compatible-connection-string>",
+    "IOT_EVENTHUB_NAME": "<built-in-Event-Hub-compatible-name>",
+    "IOT_SERVICE_CONNECTION": "<IoT-Hub-service-policy-connection-string>",
+    "CAR_DEVICE_ID": "car-001"
+  }
+}
