@@ -70,12 +70,15 @@ function App() {
     const command = lastCommand.current;
     if (
       command &&
-      ((command === "start" && result.charging) ||
+      ((command === "start" &&
+        (result.charging || result.batteryLevel >= 100)) ||
         (command === "stop" && !result.charging))
     ) {
       setNotice(
         command === "start"
-          ? "Charging started successfully."
+          ? result.batteryLevel >= 100
+            ? "Battery is fully charged."
+            : "Charging started successfully."
           : "Charging stopped successfully.",
       );
       setNoticeError(false);
@@ -117,6 +120,13 @@ function App() {
       clearConfirmationTimer();
     };
   }, []);
+
+  useEffect(() => {
+    if (!notice) return;
+    const timer = setTimeout(() => setNotice(""), 5000);
+    return () => clearTimeout(timer);
+  }, [notice]);
+
   const stale = Boolean(battery && now - Date.parse(battery.updatedAt) > 15000);
   const state = stale
     ? "offline"
